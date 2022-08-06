@@ -1,6 +1,6 @@
 .DS_Store
 
-core/private_data.py
+core/core/private_data.py
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
