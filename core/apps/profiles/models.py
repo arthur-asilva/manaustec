@@ -6,3 +6,6 @@ class Profile(models.Model):
     name = models.CharField(max_length=100)
     modules = ArrayField(models.CharField(max_length=100))
     allowed_areas = ArrayField(ArrayField(models.CharField(max_length=100)))
+
+    def __str__(self):
+        return self.name 
