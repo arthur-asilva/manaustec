@@ -11,11 +11,3 @@ class Product(models.Model):
 
     def __str__(self):
         return f"{self.name}, {self.quantity}"
-
-    @property
-    def sale_price(self):
-         return self.sale_price
-
-    @sale_price.setter
-    def sale_price(self, value):
-         self.sale_price = float("{:.2f}".format(value))
