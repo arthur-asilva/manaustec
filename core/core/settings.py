@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'apps.providers',
     'apps.products',
     'apps.clients',
+    'apps.service_budgets',
 ]
 
 MIDDLEWARE = [

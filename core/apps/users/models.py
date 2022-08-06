@@ -1,6 +1,4 @@
-import email
 from django.db import models
-from django.forms import PasswordInput
 from apps.profiles.models import Profile
 
 class User(models.Model):
