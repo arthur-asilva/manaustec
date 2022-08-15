@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
-from .private_data import DBConnection
+from .private_data import DBConnection, SecreKey
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -22,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-*e7@@qpm5&6jh0ikzz*)gf1rjyx(y1ggi1w3+v1epe6f!0tg3^'
+SECRET_KEY = SecreKey
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
