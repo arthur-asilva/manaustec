@@ -1,0 +1,87 @@
+{% extends '../base.html' %}
+{% load static %}
+
+{% block main %}
+
+<div class="row">
+
+    <!--
+        * Form to add or update user
+    -->
+    
+    <div class="col-md-6 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Criar um novo usuário</h4>
+                <form class="forms-sample" method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label>Nome</label>
+                        <input required type="text" name="name" value="{{user.name}}" class="form-control" placeholder="Nome completo" />
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input required type="text" name="email" value="{{user.email}}" class="form-control" placeholder="Email para contato" />
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label>Status</label>
+                            <select required name="is_active" class="form-control" id="exampleFormControlSelect2">
+                                <option value="True">Ativo</option>
+                                <option {% if not user.is_active %}selected{% endif %} value="False">Inativo</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Perfil de acesso</label>
+                                <select name="profile" required class="form-control">
+                                    {% for profile in profiles %}
+                                        <option {% if profile.id == user.profile.id %}selected{% endif %} value="{{profile.id}}">{{profile.name}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group mb-0">
+                        <button type="submit" class="btn btn-primary float-end">Enviar</button>
+                        <a href="{% url 'users:modify' %}" class="btn">Novo</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!--
+        * List of all users to delete or link to add/update form
+    -->
+
+    <div class="col-md-6 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <tbody style="height: 340px; display: block;">
+                        
+                        {% for user in users %}
+                            <tr>
+                                <td class="col-9">{{user.name}}</td>
+                                <td class="col-3 text-center">
+                                    <div class="btn-group" role="group" aria-label="Basic example">
+                                        <a href="{% url 'users:modify' %}?u={{user.id}}" class="btn btn-icon btn-rounded btn-primary">
+                                            <i class="mdi mdi-border-color"></i>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+  </div>
+{% endblock main %}
