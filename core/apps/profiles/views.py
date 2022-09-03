@@ -1,7 +1,8 @@
-from os import access
 from django.shortcuts import render, redirect
 from .models import Access, Profile
+from injections.strategies import AccessValidation
 
+@AccessValidation('users')
 def Modify(request):
 
     profile = request.GET.get('p', None)
