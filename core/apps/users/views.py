@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect
 from apps.profiles.models import Profile
 from .models import User
+from injections.strategies import AccessValidation
 
+@AccessValidation('users')
 def Modify(request):
 
     user = request.GET.get('u', None)
@@ -24,3 +26,16 @@ def Modify(request):
         return redirect('http://localhost:8000/users/modify')
 
     return render(request, 'users/add.html', data)
+
+
+
+
+def Login(request):
+
+    if request.method == 'POST':
+        user = User.objects.filter(email=request.POST['email'], password=request.POST['password'])
+        if user.exists:
+            request.session['auth'] = user.first().id
+            return redirect('http://localhost:8000/users/modify')
+
+    return render(request, 'login.html')
