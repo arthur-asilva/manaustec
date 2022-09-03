@@ -19,9 +19,13 @@ class Profile(models.Model):
 
     @classmethod
     def update(cls, id, request):
-        access_list = Access.objects.values('access').filter(id__in=request.getlist('user_access')).values_list('access', flat=True)
+        users_access = Access.objects.values('access').filter(id__in=request.getlist('user_access')).values_list('access', flat=True)
 
-        profile = cls.objects.filter(id=id).update(name = request['name'], accesses = list(access_list))
+        access_list = {
+            'users': list(users_access)
+        }
+
+        profile = cls.objects.filter(id=id).update(name = request['name'], accesses = access_list)
 
         return profile
 
