@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'apps.products',
     'apps.clients',
     'apps.service_budgets',
+    'injections',
 ]
 
 MIDDLEWARE = [
@@ -71,6 +72,9 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
+            'libraries':{
+                'TemplateTags': 'injections.templatetags',
+            }
         },
     },
 ]
