@@ -19,6 +19,7 @@ register = template.Library()
 '''
 
 @register.simple_tag(takes_context=True)
-def logged_user(context, value):
+def logged_user(context):
     request = context['request']
-    return User.objects.get(id=int(request.session['auth']))
+    user = User.objects.get(id=int(request.session['auth']))
+    return user
