@@ -2,8 +2,9 @@ from django.shortcuts import render, redirect
 from apps.profiles.models import Profile
 from .models import User
 from injections.strategies import AccessValidation
+from injections.addons import Module
 
-@AccessValidation('users')
+@AccessValidation(Module.USERS)
 def Modify(request):
 
     user = request.GET.get('u', None)
