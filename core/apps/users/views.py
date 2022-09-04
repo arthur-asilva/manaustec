@@ -40,3 +40,13 @@ def Login(request):
             return redirect('http://localhost:8000/users/modify')
 
     return render(request, 'login.html')
+
+
+
+
+def Logout(request):
+    
+    if 'auth' in list(request.session.keys()):
+        del request.session['auth']
+
+    return redirect('http://localhost:8000/users/modify')

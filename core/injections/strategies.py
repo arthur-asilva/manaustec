@@ -16,7 +16,7 @@ def AccessValidation(module):
                 for access in accesses:
                     if func.__name__ == access['view']:
                         return func(request, *args, **kwargs)
-                        
+
             return redirect('http://localhost:8000')
 
         return wrapper_arguments

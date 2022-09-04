@@ -1,4 +1,5 @@
 from django import template
+from apps.users.models import User
 
 register = template.Library()
 
@@ -16,3 +17,8 @@ register = template.Library()
     def soma(value, arg):
         return value + arg
 '''
+
+@register.simple_tag(takes_context=True)
+def logged_user(context, value):
+    request = context['request']
+    return User.objects.get(id=int(request.session['auth']))
