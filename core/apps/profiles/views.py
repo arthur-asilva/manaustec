@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
 from .models import Access, Profile
 from injections.strategies import AccessValidation
+from injections.addons import Module
 
-@AccessValidation('users')
+@AccessValidation(Module.PROFILES)
 def Modify(request):
 
     profile = request.GET.get('p', None)
